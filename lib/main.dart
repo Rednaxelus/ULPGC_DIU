@@ -84,6 +84,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ULPGC EII'),
+        actions: <Widget>[Text('Login')],
         backgroundColor: colorPrimary,
       ),
       body: Center(
