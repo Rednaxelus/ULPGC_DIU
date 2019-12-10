@@ -11,8 +11,8 @@ Container giveLoginButton(BuildContext context) {
           color: Theme
               .of(context)
               .accentColor),
-      borderRadius: BorderRadius.all(Radius.circular(
-          20.0) //                 <--- border radius here
+      borderRadius: BorderRadius.all(
+          Radius.circular(20.0) //                 <--- border radius here
       ),
     ),
     child: FlatButton(
@@ -25,5 +25,5 @@ Container giveLoginButton(BuildContext context) {
                 .accentColor,
           )),
     ),
-  )
+  );
 }
