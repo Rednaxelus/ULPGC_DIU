@@ -14,7 +14,8 @@ import 'package:uni/customBox.dart';
 
 void main() => runApp(MyApp());
 
-Color colorPrimary = Color.fromARGB(255, 73, 101, 136);
+final Color colorPrimary = Color.fromARGB(255, 73, 101, 136);
+final Color colorSecondary = Colors.amber[800];
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
@@ -84,7 +85,29 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ULPGC EII'),
-        actions: <Widget>[Text('Login')],
+        actions: <Widget>[
+          Container(
+            margin: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(6.0),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(0, 0, 0, 0),
+              border: Border.all(
+                  width: 2, //                   <--- border width here
+                  color: colorSecondary),
+              borderRadius: BorderRadius.all(Radius.circular(
+                      20.0) //                 <--- border radius here
+                  ),
+            ),
+            child: FlatButton(
+              onPressed: () {},
+              child: Text("Login",
+                  style: new TextStyle(
+                    fontSize: 21.0,
+                    color: colorSecondary,
+                  )),
+            ),
+          )
+        ],
         backgroundColor: colorPrimary,
       ),
       body: Center(
@@ -106,7 +129,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: colorSecondary,
         onTap: _onItemTapped,
       ),
     );
