@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'calender.dart';
 import 'customBox.dart';
 
 class MenuPage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _MenuPageState extends State<MenuPage> {
         TableRow(
           children: [
             CustomBox("Asignaturas", Icons.collections_bookmark),
-            CustomBox("Calendario", Icons.calendar_today),
+            CustomBox("hfghhhg", Icons.ac_unit),
           ],
         ),
         TableRow(children: [
@@ -29,17 +30,7 @@ class _MenuPageState extends State<MenuPage> {
         ])
       ],
     ),
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text('Through the night, we have one shot to live another day'),
-        Text('We cannot let a stray gunshot give us away'),
-        Text('We will fight up close, seize the moment and stay in it'),
-        Text('It’s either that or meet the business end of a bayonet'),
-        Text('The code word is ‘Rochambeau,’ dig me?'),
-      ],
-    ),
+    CalendarScreen(),
     Text(
       'Bienvenvido',
       style: optionStyle,
@@ -95,8 +86,8 @@ class _MenuPageState extends State<MenuPage> {
             title: Text('Clases'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.new_releases),
-            title: Text('Noticias importantes'),
+            icon: Icon(Icons.calendar_today),
+            title: Text('Calendario'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),

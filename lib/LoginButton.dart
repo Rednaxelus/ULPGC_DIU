@@ -8,21 +8,17 @@ Container giveLoginButton(BuildContext context) {
       color: Color.fromARGB(0, 0, 0, 0),
       border: Border.all(
           width: 2, //                   <--- border width here
-          color: Theme
-              .of(context)
-              .accentColor),
+          color: Theme.of(context).accentColor),
       borderRadius: BorderRadius.all(
           Radius.circular(20.0) //                 <--- border radius here
-      ),
+          ),
     ),
     child: FlatButton(
       onPressed: () {},
       child: Text("Login",
           style: new TextStyle(
             fontSize: 21.0,
-            color: Theme
-                .of(context)
-                .accentColor,
+            color: Theme.of(context).accentColor,
           )),
     ),
   );
