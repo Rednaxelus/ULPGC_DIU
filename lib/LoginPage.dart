@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Dirección de correo electrónico",
+          hintText: "DNI (sin letra) / Pasaporte",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
