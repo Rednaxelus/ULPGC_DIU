@@ -70,7 +70,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   onRangeSelected: (range) =>
                       print("Range is ${range.from}, ${range.to}"),
                   onDateSelected: (date) => _handleNewDate(date),
-                  isExpandable: true,
+                  isExpanded: true,
                   showTodayIcon: true,
                   eventDoneColor: Colors.green,
                   eventColor: Colors.grey),

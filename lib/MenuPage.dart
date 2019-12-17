@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'WidgetNotifications.dart';
 import 'calender.dart';
 import 'customBox.dart';
 
@@ -21,7 +22,7 @@ class _MenuPageState extends State<MenuPage> {
         TableRow(
           children: [
             CustomBox("Asignaturas", Icons.collections_bookmark),
-            CustomBox("hfghhhg", Icons.ac_unit),
+            CustomBox("Configuración", Icons.settings),
           ],
         ),
         TableRow(children: [
@@ -57,20 +58,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
             child: FlatButton(
               onPressed: () {},
-              child: Row(
-                children: <Widget>[
-                  Text("13",
-                      style: new TextStyle(
-                        fontSize: 21.0,
-                        color: Theme.of(context).accentColor,
-                      )),
-                  Icon(
-                    Icons.new_releases,
-                    color: Theme.of(context).accentColor,
-                    size: 24.0,
-                  ),
-                ],
-              ),
+              child: new WidgetNotifications(),
             ),
           ),
         ],
