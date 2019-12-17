@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uni/model/Event.dart';
+import 'package:uni/model/EventManager.dart';
 
-class WidgetNotifications extends StatelessWidget {
-  final NotificationData nd = NotificationData(
-      "Tester", Image.asset('assets/images/logo.png'), DateTime(2019, 3, 1));
+class WidgetNotifications extends StatefulWidget {
+  List<NotificationData> _notificationDatas;
 
+  WidgetNotifications() {
+    EventManager eventManager = EventManager();
+    _notificationDatas = List<NotificationData>();
+
+    for (Event event in eventManager.events) {
+      _notificationDatas
+          .add(NotificationData(Image.asset('assets/images/logo.png'), event));
+    }
+  }
+
+  @override
+  _WidgetNotificationsState createState() => _WidgetNotificationsState();
+}
+
+class _WidgetNotificationsState extends State<WidgetNotifications> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,11 +33,11 @@ class WidgetNotifications extends StatelessWidget {
         itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
           PopupMenuItem<WhyFarther>(
             value: WhyFarther.harder,
-            child: NotificationEntity(nd),
+            child: NotificationEntity(widget._notificationDatas.first),
           ),
-          const PopupMenuItem<WhyFarther>(
+          PopupMenuItem<WhyFarther>(
             value: WhyFarther.smarter,
-            child: Text('Being a lot smarter'),
+            child: NotificationEntity(widget._notificationDatas.elementAt(1)),
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.selfStarter,
@@ -52,12 +68,11 @@ class WidgetNotifications extends StatelessWidget {
 }
 
 class NotificationData {
-  String text;
   Image thumbnail;
-  DateTime dateTime;
+  Event event;
   static final DateFormat dateFormat = DateFormat('dd.MM.yyyy hh:mm');
 
-  NotificationData(this.text, this.thumbnail, this.dateTime);
+  NotificationData(this.thumbnail, this.event);
 }
 
 // This is the type used by the popup menu below.
@@ -76,8 +91,9 @@ class NotificationEntity extends StatelessWidget {
         notificationData.thumbnail,
         Column(
           children: <Widget>[
-            Text(notificationData.text),
-            Text(NotificationData.dateFormat.format(notificationData.dateTime)),
+            Text(notificationData.event.title),
+            Text(NotificationData.dateFormat
+                .format(notificationData.event.dateTime)),
           ],
         )
       ],
