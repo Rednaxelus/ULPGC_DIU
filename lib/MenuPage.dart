@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'EventManager.dart';
-import 'WidgetNotifications.dart';
 import 'calender.dart';
-import 'customBox.dart';
+import 'uiElements/customBox.dart';
+import 'view/NotificationView.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
@@ -22,13 +22,13 @@ class _MenuPageState extends State<MenuPage> {
       children: [
         TableRow(
           children: [
-            CustomBox("Asignaturas", Icons.collections_bookmark),
-            CustomBox("Configuración", Icons.settings),
+            CustomBoxForOptions("Asignaturas", Icons.collections_bookmark),
+            CustomBoxForOptions("Configuración", Icons.settings),
           ],
         ),
         TableRow(children: [
-          CustomBox("Calificaciones", Icons.assignment),
-          CustomBox("Exámenes", Icons.insert_drive_file)
+          CustomBoxForOptions("Calificaciones", Icons.assignment),
+          CustomBoxForOptions("Exámenes", Icons.insert_drive_file)
         ])
       ],
     ),
@@ -57,10 +57,7 @@ class _MenuPageState extends State<MenuPage> {
             decoration: BoxDecoration(
               color: Color.fromARGB(0, 0, 0, 0),
             ),
-            child: FlatButton(
-              onPressed: () {},
-              child: new WidgetNotifications(EventManager()),
-            ),
+            child: new NotificationView(EventManager()),
           ),
         ],
         backgroundColor: Theme.of(context).primaryColor,
