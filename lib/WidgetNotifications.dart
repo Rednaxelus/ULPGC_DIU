@@ -4,17 +4,13 @@ import 'package:uni/model/Event.dart';
 import 'package:uni/model/EventManager.dart';
 
 class WidgetNotifications extends StatefulWidget {
-  List<NotificationData> _notificationDatas;
+  final List<NotificationData> _notificationDatas;
 
-  WidgetNotifications() {
-    EventManager eventManager = EventManager();
-    _notificationDatas = List<NotificationData>();
-
-    for (Event event in eventManager.events) {
-      _notificationDatas
-          .add(NotificationData(Image.asset('assets/images/logo.png'), event));
-    }
-  }
+  WidgetNotifications(EventManager eventManager)
+      : _notificationDatas = eventManager.events
+      .map((event) =>
+      NotificationData(Image.asset('assets/images/logo.png'), event))
+      .toList();
 
   @override
   _WidgetNotificationsState createState() => _WidgetNotificationsState();

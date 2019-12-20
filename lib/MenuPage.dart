@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'WidgetNotifications.dart';
 import 'calender.dart';
 import 'customBox.dart';
+import 'model/EventManager.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
@@ -58,7 +59,7 @@ class _MenuPageState extends State<MenuPage> {
             ),
             child: FlatButton(
               onPressed: () {},
-              child: new WidgetNotifications(),
+              child: new WidgetNotifications(EventManager()),
             ),
           ),
         ],

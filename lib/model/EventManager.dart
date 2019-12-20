@@ -1,10 +1,9 @@
 import 'package:uni/model/Event.dart';
 
 class EventManager {
-  Set<Event> events;
+  final List<Event> events = List<Event>();
 
   EventManager() {
-    events = Set();
     events.add(Event('Aplicación de becas cerca', DateTime(2019, 3, 1),
         "porfa si quieres..."));
     events.add(Event('2334Aplicación de becas cerca', DateTime(2019, 4, 2),
