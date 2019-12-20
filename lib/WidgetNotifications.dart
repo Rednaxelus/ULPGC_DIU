@@ -17,33 +17,26 @@ class WidgetNotifications extends StatefulWidget {
 }
 
 class _WidgetNotificationsState extends State<WidgetNotifications> {
+  NotificationData _selection;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: PopupMenuButton<WhyFarther>(
-        onSelected: (WhyFarther result) {
-          //setState(() {
-          //_selection = result;
-          // });
+      child: PopupMenuButton<NotificationData>(
+        onSelected: (NotificationData result) {
+          setState(() {
+            _selection = result;
+            widget._notificationDatas.add(_selection);
+          });
         },
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
-          PopupMenuItem<WhyFarther>(
-            value: WhyFarther.harder,
-            child: NotificationEntity(widget._notificationDatas.first),
-          ),
-          PopupMenuItem<WhyFarther>(
-            value: WhyFarther.smarter,
-            child: NotificationEntity(widget._notificationDatas.elementAt(1)),
-          ),
-          const PopupMenuItem<WhyFarther>(
-            value: WhyFarther.selfStarter,
-            child: Text('Being a self-starter'),
-          ),
-          const PopupMenuItem<WhyFarther>(
-            value: WhyFarther.tradingCharter,
-            child: Text('Placed in charge of trading charter'),
-          ),
-        ],
+        itemBuilder: (BuildContext context) =>
+            widget._notificationDatas
+                .map((x) =>
+                PopupMenuItem<NotificationData>(
+                  value: x,
+                  child: NotificationEntity(x),
+                ))
+                .toList(),
         child: Row(
           children: <Widget>[
             Text("13",
@@ -70,9 +63,6 @@ class NotificationData {
 
   NotificationData(this.thumbnail, this.event);
 }
-
-// This is the type used by the popup menu below.
-enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
 
 class NotificationEntity extends StatelessWidget {
   final NotificationData notificationData;
