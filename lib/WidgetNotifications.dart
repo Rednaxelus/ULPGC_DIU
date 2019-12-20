@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:uni/model/Event.dart';
-import 'package:uni/model/EventManager.dart';
+import 'package:uni/EventManager.dart';
+
+import 'model/NotificationData.dart';
 
 class WidgetNotifications extends StatefulWidget {
   final List<NotificationData> _notificationDatas;
@@ -18,6 +18,8 @@ class WidgetNotifications extends StatefulWidget {
 
 class _WidgetNotificationsState extends State<WidgetNotifications> {
   NotificationData _selection;
+
+  NotificationDisplay _notificationDisplay = NotificationDisplay();
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +39,47 @@ class _WidgetNotificationsState extends State<WidgetNotifications> {
                   child: NotificationEntity(x),
                 ))
                 .toList(),
-        child: Row(
-          children: <Widget>[
-            Text("13",
-                style: new TextStyle(
-                  fontSize: 21.0,
-                  color: Theme.of(context).accentColor,
-                )),
-            Icon(
-              Icons.new_releases,
-              color: Theme.of(context).accentColor,
-              size: 24.0,
-            ),
-          ],
-        ),
+        child: _notificationDisplay,
       ),
     );
   }
 }
 
-class NotificationData {
-  Image thumbnail;
-  Event event;
-  static final DateFormat dateFormat = DateFormat('dd.MM.yyyy hh:mm');
+class NotificationDisplay extends StatefulWidget {
+  @override
+  _NotificationDisplayState createState() => _NotificationDisplayState();
+}
 
-  NotificationData(this.thumbnail, this.event);
+class _NotificationDisplayState extends State<NotificationDisplay> {
+  int _number = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Text('$_number',
+            style: new TextStyle(
+              fontSize: 21.0,
+              color: Theme
+                  .of(context)
+                  .accentColor,
+            )),
+        Icon(
+          Icons.new_releases,
+          color: Theme
+              .of(context)
+              .accentColor,
+          size: 24.0,
+        ),
+      ],
+    );
+  }
+
+  void numberChanged(int newNumber) {
+    setState(() {
+      _number = newNumber;
+    });
+  }
 }
 
 class NotificationEntity extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'EventManager.dart';
 import 'WidgetNotifications.dart';
 import 'calender.dart';
 import 'customBox.dart';
-import 'model/EventManager.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
