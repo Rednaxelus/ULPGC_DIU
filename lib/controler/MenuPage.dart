@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni/view/LabReservations.dart';
+import 'package:uni/view/News.dart';
 
 import '../uiElements/customBox.dart';
 import '../view/NotificationView.dart';
@@ -19,22 +20,9 @@ class _MenuPageState extends State<MenuPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static List<Widget> _widgetOptions = <Widget>[
-    Table(
-      children: [
-        TableRow(
-          children: [
-            CustomBoxForOptions("Asignaturas", Icons.collections_bookmark),
-            CustomBoxForOptions("Configuración", Icons.settings),
-          ],
-        ),
-        TableRow(children: [
-          CustomBoxForOptions("Calificaciones", Icons.assignment),
-          CustomBoxForOptions("Exámenes", Icons.insert_drive_file)
-        ])
-      ],
-    ),
-    CalendarScreen(_eventManager),
-    LabReservationScreen(),
+    new NewsScreen(),
+    new CalendarScreen(_eventManager),
+    new LabReservationScreen(),
   ];
 
   static final EventManager _eventManager = EventManager();
@@ -90,6 +78,30 @@ class _MenuPageState extends State<MenuPage> {
         selectedItemColor: Theme.of(context).accentColor,
         onTap: _onItemTapped,
       ),
+    );
+  }
+}
+
+class PreTable extends StatelessWidget {
+  const PreTable({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      children: [
+        TableRow(
+          children: [
+            CustomBoxForOptions("Asignaturas", Icons.collections_bookmark),
+            CustomBoxForOptions("Configuración", Icons.settings),
+          ],
+        ),
+        TableRow(children: [
+          CustomBoxForOptions("Calificaciones", Icons.assignment),
+          CustomBoxForOptions("Exámenes", Icons.insert_drive_file)
+        ])
+      ],
     );
   }
 }
