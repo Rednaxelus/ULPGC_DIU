@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
+import 'package:uni/EventManager.dart';
+
+import 'model/Event.dart';
 
 class CalendarScreen extends StatefulWidget {
+  CalendarScreen(this._eventManager);
+
+  final EventManager _eventManager;
+
   @override
   State<StatefulWidget> createState() {
     return _CalendarScreenState();
@@ -17,39 +24,44 @@ class _CalendarScreenState extends State<CalendarScreen> {
     print(_selectedEvents);
   }
 
+  Map _eventToMap(Event event) {
+    return {
+      'name': event.title,
+      'isDone': true,
+      'type': event.eventType,
+      'date': Event.dateFormat.format(event.dateTime),
+      'description': event.description
+    };
+  }
+
   List _selectedEvents;
   DateTime _selectedDay;
 
-  final Map _events = {
-    DateTime(2019, 3, 1): [
-      {'name': 'Event A', 'isDone': true},
-    ],
-    DateTime(2019, 3, 4): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-    ],
-    DateTime(2019, 3, 5): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-    ],
-    DateTime(2019, 3, 13): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
-    ],
-    DateTime(2019, 3, 15): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
-    ],
-    DateTime(2019, 3, 26): [
-      {'name': 'Event A', 'isDone': false},
-    ],
-  };
+  _addEvent(Event event) {
+    DateTime dateWithoutTimeOfDay =
+        DateTime(event.dateTime.year, event.dateTime.month, event.dateTime.day);
+
+    if (_events == null) {
+      _events = {
+        dateWithoutTimeOfDay: [
+          _eventToMap(event),
+        ]
+      };
+    } else if (_events.containsKey(dateWithoutTimeOfDay)) {
+      _events[dateWithoutTimeOfDay].add(_eventToMap(event));
+    } else {
+      _events[dateWithoutTimeOfDay] = [_eventToMap(event)];
+    }
+  }
+
+  Map<DateTime, List<Map>> _events;
 
   @override
   void initState() {
     super.initState();
+
+    widget._eventManager.events.forEach((e) => _addEvent(e));
+
     _selectedEvents = _events[_selectedDay] ?? [];
   }
 
@@ -70,7 +82,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   onRangeSelected: (range) =>
                       print("Range is ${range.from}, ${range.to}"),
                   onDateSelected: (date) => _handleNewDate(date),
-                  isExpanded: true,
+                  isExpandable: true,
                   showTodayIcon: true,
                   eventDoneColor: Colors.green,
                   eventColor: Colors.grey),
@@ -93,12 +105,43 @@ class _CalendarScreenState extends State<CalendarScreen> {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
           child: ListTile(
+            leading: _determineIcon(_selectedEvents[index]['type']),
             title: Text(_selectedEvents[index]['name'].toString()),
+            trailing: Text("Hora: " + _selectedEvents[index]['date']),
+            subtitle: Text(_selectedEvents[index]['description']),
             onTap: () {},
           ),
         ),
         itemCount: _selectedEvents.length,
       ),
     );
+  }
+
+  Icon _determineIcon(selectedEvent) {
+    switch (selectedEvent) {
+      case EventType.EXAM:
+        {
+          return Icon(Icons.assignment);
+        }
+        break;
+
+      case EventType.IMPORTANT:
+        {
+          return Icon(Icons.warning);
+        }
+        break;
+
+      case EventType.LEISURE:
+        {
+          return Icon(Icons.audiotrack);
+        }
+        break;
+
+      default:
+        {
+          return Icon(Icons.error_outline);
+        }
+        break;
+    }
   }
 }
