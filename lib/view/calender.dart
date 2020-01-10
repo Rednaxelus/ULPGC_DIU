@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
-import 'package:uni/EventManager.dart';
+import 'package:uni/controler/EventManager.dart';
 
-import 'model/Event.dart';
+import '../model/Event.dart';
 
 class CalendarScreen extends StatefulWidget {
   CalendarScreen(this._eventManager);

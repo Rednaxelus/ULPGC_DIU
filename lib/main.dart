@@ -11,7 +11,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'LoginPage.dart';
+import 'view/LoginPage.dart';
 
 void main() => runApp(MyApp());
 

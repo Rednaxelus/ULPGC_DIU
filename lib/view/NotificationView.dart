@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni/EventManager.dart';
+import 'package:uni/controler/EventManager.dart';
 
 import '../model/NotificationData.dart';
 

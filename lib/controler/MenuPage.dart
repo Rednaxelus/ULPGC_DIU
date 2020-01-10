@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uni/LabReservations.dart';
+import 'package:uni/view/LabReservations.dart';
 
+import '../uiElements/customBox.dart';
+import '../view/NotificationView.dart';
+import '../view/calender.dart';
 import 'EventManager.dart';
-import 'calender.dart';
-import 'uiElements/customBox.dart';
-import 'view/NotificationView.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
