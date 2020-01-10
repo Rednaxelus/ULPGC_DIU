@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uni/LabReservations.dart';
 
 import 'EventManager.dart';
 import 'calender.dart';
@@ -33,10 +34,7 @@ class _MenuPageState extends State<MenuPage> {
       ],
     ),
     CalendarScreen(_eventManager),
-    Text(
-      'Bienvenvido',
-      style: optionStyle,
-    ),
+    LabReservationScreen(),
   ];
 
   static final EventManager _eventManager = EventManager();
@@ -70,8 +68,8 @@ class _MenuPageState extends State<MenuPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('Clases'),
+            icon: Icon(Icons.description),
+            title: Text('Noticias'),
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -85,7 +83,7 @@ class _MenuPageState extends State<MenuPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text('Facultad EII'),
+            title: Text('Solicitar Laboratorio'),
           ),
         ],
         currentIndex: _selectedIndex,
