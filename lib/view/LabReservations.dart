@@ -20,6 +20,7 @@ class _LabReservationScreenState extends State<LabReservationScreen> {
     _labs.add(Lab("L1-1"));
     _labs.add(Lab("L1-2"));
     _labs.add(Lab("L1-3"));
+    _labs.last.occupationDates.add(DateTime.now());
     _labs.add(Lab("L1-4"));
     _labs.add(Lab("L2-1"));
     _labs.add(Lab("L2-2"));
@@ -43,18 +44,46 @@ class _LabReservationScreenState extends State<LabReservationScreen> {
   Widget _buildLabList() {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) => Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 1.5, color: Colors.black12),
+        child: Card(
+          color: _determineCardColor(_labs[index].occupationDates),
+          child: ListTile(
+            title: Text(_labs[index].name),
+            subtitle:
+                Text(_determineOccupationDate(_labs[index].occupationDates)),
+            onTap: () {},
           ),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
-        child: ListTile(
-          title: Text(_labs[index].name),
-          onTap: () {},
         ),
       ),
       itemCount: _labs.length,
     );
+  }
+
+  Color _determineCardColor(List<DateTime> occupationDates) {
+    if (_determineIfFree(occupationDates)) {
+      return Colors.green[100];
+    }
+    return Colors.red[100];
+  }
+
+  bool _determineIfFree(List<DateTime> occupationDates) {
+    bool isFree = true;
+    for (DateTime date in occupationDates) {
+      if (date.difference(DateTime.now()).inDays < 1) {
+        isFree = false;
+        break;
+      }
+    }
+    return isFree;
+  }
+
+  String _determineOccupationDate(List<DateTime> occupationDates) {
+    if (_determineIfFree(occupationDates)) {
+      return "libre";
+    }
+
+    DateTime date = occupationDates.first;
+    date.add(new Duration(hours: 2));
+
+    return "occupado hasta el " + Lab.DATE_FORMAT.format(date);
   }
 }
