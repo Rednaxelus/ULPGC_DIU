@@ -71,7 +71,7 @@ class _MenuPageState extends State<MenuPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text('Solicitar Laboratorio'),
+            title: Text('Laboratorios'),
           ),
         ],
         currentIndex: _selectedIndex,

@@ -122,7 +122,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     switch (selectedEvent) {
       case EventType.EXAM:
         {
-          return Icon(Icons.assignment);
+          return Icon(Icons.edit);
         }
         break;
 
@@ -135,6 +135,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
       case EventType.LEISURE:
         {
           return Icon(Icons.audiotrack);
+        }
+        break;
+      case EventType.ASSIGNMENT:
+        {
+          return Icon(Icons.assignment);
         }
         break;
 

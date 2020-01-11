@@ -37,15 +37,12 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget _buildLabList() {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) => Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 1.5, color: Colors.black12),
-          ),
-        ),
         padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
-        child: ListTile(
-          title: Text(_news[index].name),
-          onTap: () {},
+        child: Card(
+          child: ListTile(
+            title: Text(_news[index].name),
+            onTap: () {},
+          ),
         ),
       ),
       itemCount: _news.length,

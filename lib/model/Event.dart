@@ -11,4 +11,4 @@ class Event {
   Event(this.title, this.dateTime, this.description, this.eventType);
 }
 
-enum EventType { EXAM, IMPORTANT, LEISURE }
+enum EventType { EXAM, IMPORTANT, LEISURE, ASSIGNMENT }
