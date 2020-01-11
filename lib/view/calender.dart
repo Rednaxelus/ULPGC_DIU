@@ -107,10 +107,45 @@ class _CalendarScreenState extends State<CalendarScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
           child: ListTile(
             leading: _determineIcon(_selectedEvents[index]['type']),
-            title: Text(_selectedEvents[index]['name'].toString()),
+            title: Text(_selectedEvents[index]['name']),
             trailing: Text("Hora: " + _selectedEvents[index]['date']),
             subtitle: Text(_selectedEvents[index]['description']),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  return SimpleDialog(
+                    contentPadding: EdgeInsets.all(0),
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0)),
+                    children: <Widget>[
+                      Container(
+                        height: 50,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Colors.red[300],
+                          borderRadius: new BorderRadius.vertical(
+                              top: new Radius.circular(10.0)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            _selectedEvents[index]['name'],
+                            style: Theme.of(context).textTheme.display1,
+                          ),
+                        ),
+                      ),
+                      Text("Fecha: 24.1.2020"),
+                      Text("Hora: " + _selectedEvents[index]['date']),
+                      Text("Aula: A2-1"),
+                      SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           ),
         ),
         itemCount: _selectedEvents.length,
