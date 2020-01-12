@@ -36,20 +36,6 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ULPGC EII'),
-        actions: <Widget>[
-          Container(
-            margin: const EdgeInsets.all(5.0),
-            padding: const EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              color: Color.fromARGB(0, 0, 0, 0),
-            ),
-            child: new NotificationView(_eventManager),
-          ),
-        ],
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -80,6 +66,25 @@ class _MenuPageState extends State<MenuPage> {
       ),
     );
   }
+}
+
+AppBar _createCustomAppBar(BuildContext context, EventManager _eventManager) {
+  return AppBar(
+    title: const Text('ULPGC EII'),
+    actions: <Widget>[
+      Container(
+        margin: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(6.0),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(0, 0, 0, 0),
+        ),
+        child: new NotificationView(_eventManager),
+      ),
+    ],
+    backgroundColor: Theme
+        .of(context)
+        .primaryColor,
+  );
 }
 
 class PreTable extends StatelessWidget {

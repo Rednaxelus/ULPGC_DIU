@@ -68,10 +68,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   title: Text('Calendario'),
-      // ),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -115,6 +111,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 context: context,
                 barrierDismissible: true,
                 builder: (BuildContext context) {
+                  TextStyle _descriptionTextStyle =
+                  TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+                  TextStyle _descriptionTextStyle2 = TextStyle(fontSize: 18);
                   return SimpleDialog(
                     contentPadding: EdgeInsets.all(0),
                     shape: new RoundedRectangleBorder(
@@ -135,11 +134,65 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                         ),
                       ),
-                      Text("Fecha: 24.1.2020"),
-                      Text("Hora: " + _selectedEvents[index]['date']),
-                      Text("Aula: A2-1"),
                       SizedBox(
-                        height: 30,
+                        height: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.calendar_today),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "24.1.2020",
+                                  style: _descriptionTextStyle,
+                                ),
+                                SizedBox(
+                                  width: 28,
+                                ),
+                                Icon(Icons.access_time),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  _selectedEvents[index]['date'],
+                                  style: _descriptionTextStyle,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.location_on),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Flexible(
+                                  child: Text("Aula A2-1",
+                                      style: _descriptionTextStyle),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Text(
+                                "Se muestra un ejemplo de una aplicación usando el estilo arquitectónico Model-View-Controller (Modelo-Vista-Controlador, MVC). Se modifica MoneyCalculator introduciendo las clases de Modelo. ",
+                                style: _descriptionTextStyle2),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
                       ),
                     ],
                   );
