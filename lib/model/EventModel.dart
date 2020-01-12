@@ -6,8 +6,6 @@ class EventModel {
   String description;
   EventType eventType;
   static final DateFormat dateFormat = DateFormat('hh:mm');
-  static final DateFormat completeDateFormat = DateFormat('dd.MM.yyyy hh:mm');
-
   EventModel(this.title, this.dateTime, this.description, this.eventType);
 }
 

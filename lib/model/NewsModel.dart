@@ -4,5 +4,5 @@ class NewsModel {
   String description;
   DateTime dateTime;
 
-  NewsModel(this.title, this.description);
+  NewsModel(this.title, this.description, this.dateTime);
 }

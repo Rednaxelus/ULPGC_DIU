@@ -6,7 +6,8 @@ import 'package:uni/view/NewsScreen.dart';
 import '../controler/EventManager.dart';
 import '../uiElements/unused/NotificationView.dart';
 import '../uiElements/unused/customBox.dart';
-import 'CalenderScreen
+import 'CalenderScreen.dart';
+
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
 
@@ -82,9 +83,7 @@ AppBar _createCustomAppBar(BuildContext context, EventManager _eventManager) {
         child: new NotificationView(_eventManager),
       ),
     ],
-    backgroundColor: Theme
-        .of(context)
-        .primaryColor,
+    backgroundColor: Theme.of(context).primaryColor,
   );
 }
 

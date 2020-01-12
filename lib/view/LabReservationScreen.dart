@@ -18,6 +18,7 @@ class _LabReservationScreenState extends State<LabReservationScreen> {
     super.initState();
     _labs = [];
     _labs.add(LabModel("L1-1"));
+    _labs.last.occupationDates.add(DateTime.now().add(new Duration(hours: 2)));
     _labs.add(LabModel("L1-2"));
     _labs.add(LabModel("L1-3"));
     _labs.last.occupationDates.add(DateTime.now());
@@ -25,7 +26,9 @@ class _LabReservationScreenState extends State<LabReservationScreen> {
     _labs.add(LabModel("L2-1"));
     _labs.add(LabModel("L2-2"));
     _labs.add(LabModel("L2-3"));
+    _labs.last.occupationDates.add(DateTime.now().add(new Duration(hours: 22)));
     _labs.add(LabModel("L2-4"));
+    _labs.last.occupationDates.add(DateTime.now());
   }
 
   @override
