@@ -30,7 +30,6 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget _buildLabList() {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
         child: returnCardOrDate(context, index),
       ),
       itemCount: widget._newsManager.getNewsLength(),
@@ -45,7 +44,7 @@ class _NewsScreenState extends State<NewsScreen> {
       return Column(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.only(top: 10, bottom: 5),
             child: Text(
               widget._newsManager.getDateOfNews(index),
               style: textStyle,
@@ -60,6 +59,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
   Card _buildCard(BuildContext context, int index) {
     return Card(
+      color: Colors.blueGrey[50],
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
@@ -76,7 +76,12 @@ class _NewsScreenState extends State<NewsScreen> {
               .of(context)
               .accentColor),
         ),
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            widget._newsManager.setReadOfNews(index, true);
+          });
+          _showDialogOfNews(context, index);
+        },
       ),
     );
   }
@@ -84,5 +89,52 @@ class _NewsScreenState extends State<NewsScreen> {
   bool _isPrevNewsDateEqual(int index) {
     return widget._newsManager.getDateOfNews(index - 1) ==
         widget._newsManager.getDateOfNews(index);
+  }
+
+  Future _showDialogOfNews(BuildContext context, int index) {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        TextStyle _descriptionTextStyle = TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.blueGrey[50]);
+        TextStyle _descriptionTextStyle2 = TextStyle(fontSize: 18);
+        return SimpleDialog(
+          contentPadding: EdgeInsets.all(0),
+          backgroundColor: Colors.blueGrey[50],
+          shape: new RoundedRectangleBorder(
+              side: BorderSide(color: Theme
+                  .of(context)
+                  .primaryColor, width: 4),
+              borderRadius: new BorderRadius.circular(10.0)),
+          children: <Widget>[
+            Container(
+              decoration: new BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Theme
+                    .of(context)
+                    .primaryColor,
+                borderRadius:
+                new BorderRadius.vertical(top: new Radius.circular(10.0)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget._newsManager.getTitleOfNews(index),
+                  style: _descriptionTextStyle,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+              child: Text(widget._newsManager.getDescriptionOfNews(index),
+                  style: _descriptionTextStyle2),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

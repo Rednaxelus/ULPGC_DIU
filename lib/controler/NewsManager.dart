@@ -16,7 +16,7 @@ class NewsManager {
         DateTime(2020, 1, 10)));
     _news.add(NewsModel(
         "Oferta de empleo - ASTICAN",
-        " Se busca titulado/a informático para realizar Programa Inserta para el departamento de informática/sistemas.",
+        "Se busca titulado/a informático para realizar Programa Inserta para el departamento de informática/sistemas.",
         DateTime(2020, 1, 9)));
     _news.last.read = true;
     _news.add(NewsModel(
@@ -26,7 +26,7 @@ class NewsManager {
     _news.last.read = true;
     _news.add(NewsModel(
         "UI en Unity3D – Uso práctico avanzado de implementación de UI",
-        " Complementa los conocimientos básicos de Unity con el objetivo de experimentar con los diferentes tipos de interfaces de diferentes videojuegos o aplicaciones. Interfaces multidispositivo que un programador profesional debe saber cómoimplementar cuando recibe un diseño de UI/UX durante el desarrollo de cualquier tipo de software. Dirigido a: Usuario básico de Unity3D, que conozca los principios básicos del software y que sepa programar de forma básica utilizando C# en Unity, ya que utilizaremos algunos scripts para crear interfaces dinámicas. Se adaptará a perfiles desde profesionales audiovisuales, diseñadores y programadores que quieran ahondar en las posibilidades de Unity3D como a estudiantes de videojuegos que quieran ampliar sus conocimientos e incluso a usuarios que experimenten con Unity3D como hobby. No es necesario portatil.",
+        "Complementa los conocimientos básicos de Unity con el objetivo de experimentar con los diferentes tipos de interfaces de diferentes videojuegos o aplicaciones. Interfaces multidispositivo que un programador profesional debe saber cómoimplementar cuando recibe un diseño de UI/UX durante el desarrollo de cualquier tipo de software. Dirigido a: Usuario básico de Unity3D, que conozca los principios básicos del software y que sepa programar de forma básica utilizando C# en Unity, ya que utilizaremos algunos scripts para crear interfaces dinámicas. Se adaptará a perfiles desde profesionales audiovisuales, diseñadores y programadores que quieran ahondar en las posibilidades de Unity3D como a estudiantes de videojuegos que quieran ampliar sus conocimientos e incluso a usuarios que experimenten con Unity3D como hobby. No es necesario portatil.",
         DateTime(2019, 9, 12)));
     _news.last.read = true;
     _news.add(NewsModel("Bienvenido a 'EII para ti'", "Nos alegro verte",
@@ -46,7 +46,7 @@ class NewsManager {
   String displayNewNewsNotification() {
     int amount = determineHowManyNewsNew();
 
-    if (amount == 0) return "0";
+    if (amount == 0) return "";
 
     return " (" + amount.toString() + ")";
   }
@@ -66,5 +66,13 @@ class NewsManager {
 
   String getDateOfNews(int index) {
     return _dateFormat.format(_news[index].dateTime);
+  }
+
+  String getDescriptionOfNews(int index) {
+    return _news[index].description;
+  }
+
+  void setReadOfNews(int index, bool param1) {
+    _news[index].read = param1;
   }
 }
