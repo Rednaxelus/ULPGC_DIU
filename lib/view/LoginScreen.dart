@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni/controler/MenuPage.dart';
+import 'package:uni/view/MenuPage.dart';
 
 class LoginPage extends StatefulWidget {
   @override

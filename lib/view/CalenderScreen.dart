@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 import 'package:uni/controler/EventManager.dart';
 
-import '../model/Event.dart';
+import '../model/EventModel.dart';
 
 class CalendarScreen extends StatefulWidget {
   CalendarScreen(this._eventManager);
@@ -24,12 +24,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
     print(_selectedEvents);
   }
 
-  Map _eventToMap(Event event) {
+  Map _eventToMap(EventModel event) {
     return {
       'name': event.title,
       'isDone': true,
       'type': event.eventType,
-      'date': Event.dateFormat.format(event.dateTime),
+      'date': EventModel.dateFormat.format(event.dateTime),
       'description': event.description
     };
   }
@@ -37,7 +37,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   List _selectedEvents;
   DateTime _selectedDay;
 
-  _addEvent(Event event) {
+  _addEvent(EventModel event) {
     DateTime dateWithoutTimeOfDay =
         DateTime(event.dateTime.year, event.dateTime.month, event.dateTime.day);
 
@@ -112,7 +112,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 barrierDismissible: true,
                 builder: (BuildContext context) {
                   TextStyle _descriptionTextStyle =
-                  TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
                   TextStyle _descriptionTextStyle2 = TextStyle(fontSize: 18);
                   return SimpleDialog(
                     contentPadding: EdgeInsets.all(0),

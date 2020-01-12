@@ -1,5 +1,8 @@
-class News {
-  String name;
+class NewsModel {
+  String title;
+  bool read = false;
+  String description;
+  DateTime dateTime;
 
-  News(this.name);
+  NewsModel(this.title, this.description);
 }

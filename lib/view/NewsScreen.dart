@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:uni/model/NewsModel.dart';
+import 'package:uni/controler/NewsManager.dart';
 
 class NewsScreen extends StatefulWidget {
-  NewsScreen();
+  NewsScreen(this._newsManager);
+
+  final NewsManager _newsManager;
 
   @override
   State<StatefulWidget> createState() {
@@ -11,23 +13,14 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  List<News> _news;
-
   @override
   void initState() {
     super.initState();
-    _news = [];
-    _news.add(News(
-        "Tenemos una oferta de trabajo para la tienda virtual de Jugueterias Nikki. Más detalles en nuestra web"));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   title: Text('Calendario'),
-      // ),
       body: SafeArea(
         child: _buildLabList(),
       ),
@@ -39,13 +32,23 @@ class _NewsScreenState extends State<NewsScreen> {
       itemBuilder: (BuildContext context, int index) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
         child: Card(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 2.0,
+              )),
           child: ListTile(
-            title: Text(_news[index].name),
+            title: Text(widget._newsManager.getTitleOfNews(index)),
+            trailing: Text(
+              widget._newsManager.determineIfNewsNew(index),
+              style: TextStyle(color: Theme.of(context).accentColor),
+            ),
             onTap: () {},
           ),
         ),
       ),
-      itemCount: _news.length,
+      itemCount: widget._newsManager.getNewsLength(),
     );
   }
 }

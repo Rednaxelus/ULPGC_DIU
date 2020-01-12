@@ -1,14 +1,14 @@
-import 'package:uni/model/Event.dart';
+import 'package:uni/model/EventModel.dart';
 
 class EventManager {
-  final List<Event> events = List<Event>();
+  final List<EventModel> events = List<EventModel>();
 
   EventManager() {
-    events.add(Event('Aplicación de becas cerca', DateTime(2020, 1, 2),
+    events.add(EventModel('Aplicación de becas cerca', DateTime(2020, 1, 2),
         "no lo olvide", EventType.IMPORTANT));
-    events.add(Event('Entrega P4 EC', DateTime(2020, 1, 2, 10, 30),
+    events.add(EventModel('Entrega P4 EC', DateTime(2020, 1, 2, 10, 30),
         "Gestión de memoría", EventType.ASSIGNMENT));
-    events.add(Event('Exam IS2', DateTime(2020, 1, 24, 11, 30),
+    events.add(EventModel('Exam IS2', DateTime(2020, 1, 24, 11, 30),
         "Thema: MVC, Patrones de diseño; Aula: A2-1", EventType.EXAM));
   }
 }

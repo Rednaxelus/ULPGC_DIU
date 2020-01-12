@@ -11,21 +11,21 @@ class LabReservationScreen extends StatefulWidget {
 }
 
 class _LabReservationScreenState extends State<LabReservationScreen> {
-  List<Lab> _labs;
+  List<LabModel> _labs;
 
   @override
   void initState() {
     super.initState();
     _labs = [];
-    _labs.add(Lab("L1-1"));
-    _labs.add(Lab("L1-2"));
-    _labs.add(Lab("L1-3"));
+    _labs.add(LabModel("L1-1"));
+    _labs.add(LabModel("L1-2"));
+    _labs.add(LabModel("L1-3"));
     _labs.last.occupationDates.add(DateTime.now());
-    _labs.add(Lab("L1-4"));
-    _labs.add(Lab("L2-1"));
-    _labs.add(Lab("L2-2"));
-    _labs.add(Lab("L2-3"));
-    _labs.add(Lab("L2-4"));
+    _labs.add(LabModel("L1-4"));
+    _labs.add(LabModel("L2-1"));
+    _labs.add(LabModel("L2-2"));
+    _labs.add(LabModel("L2-3"));
+    _labs.add(LabModel("L2-4"));
   }
 
   @override
@@ -84,6 +84,6 @@ class _LabReservationScreenState extends State<LabReservationScreen> {
     DateTime date = occupationDates.first;
     date.add(new Duration(hours: 2));
 
-    return "occupado hasta el " + Lab.DATE_FORMAT.format(date);
+    return "occupado hasta el " + LabModel.DATE_FORMAT.format(date);
   }
 }

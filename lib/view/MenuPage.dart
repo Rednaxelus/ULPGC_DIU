@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uni/view/LabReservations.dart';
-import 'package:uni/view/News.dart';
+import 'package:uni/controler/NewsManager.dart';
+import 'package:uni/view/LabReservationScreen.dart';
+import 'package:uni/view/NewsScreen.dart';
 
-import '../uiElements/customBox.dart';
-import '../view/NotificationView.dart';
-import '../view/calender.dart';
-import 'EventManager.dart';
-
+import '../controler/EventManager.dart';
+import '../uiElements/unused/NotificationView.dart';
+import '../uiElements/unused/customBox.dart';
+import 'CalenderScreen
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
 
@@ -15,17 +15,18 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   static List<Widget> _widgetOptions = <Widget>[
-    new NewsScreen(),
+    new NewsScreen(_newsManager),
     new CalendarScreen(_eventManager),
     new LabReservationScreen(),
   ];
 
   static final EventManager _eventManager = EventManager();
+  static final NewsManager _newsManager = NewsManager();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -43,7 +44,7 @@ class _MenuPageState extends State<MenuPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.description),
-            title: Text('Noticias'),
+            title: Text('Noticias' + _newsManager.displayNewNewsNotification()),
           ),
           BottomNavigationBarItem(
             icon: Container(

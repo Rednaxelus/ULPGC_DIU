@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni/controler/EventManager.dart';
 
-import '../model/NotificationData.dart';
+import '../../model/unused/NotificationData.dart';
 
 class NotificationView extends StatefulWidget {
   final List<NotificationData> _notificationData;
