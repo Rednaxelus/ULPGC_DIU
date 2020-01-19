@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uni/controler/NewsManager.dart';
+import 'package:uni/controller/EventRepository.dart';
+import 'package:uni/controller/NewsManager.dart';
 import 'package:uni/view/LabReservationScreen.dart';
 import 'package:uni/view/NewsScreen.dart';
 
-import '../controler/EventManager.dart';
-import '../uiElements/unused/NotificationView.dart';
-import '../uiElements/unused/customBox.dart';
 import 'CalenderScreen.dart';
 
 class MenuPage extends StatefulWidget {
@@ -26,8 +24,8 @@ class _MenuPageState extends State<MenuPage> {
     new LabReservationScreen(),
   ];
 
-  static final EventManager _eventManager = EventManager();
-  static final NewsManager _newsManager = NewsManager();
+  static final EventRepository _eventManager = EventRepository();
+  static final NewsRepository _newsManager = NewsRepository();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -66,47 +64,6 @@ class _MenuPageState extends State<MenuPage> {
         selectedItemColor: Theme.of(context).accentColor,
         onTap: _onItemTapped,
       ),
-    );
-  }
-}
-
-AppBar _createCustomAppBar(BuildContext context, EventManager _eventManager) {
-  return AppBar(
-    title: const Text('ULPGC EII'),
-    actions: <Widget>[
-      Container(
-        margin: const EdgeInsets.all(5.0),
-        padding: const EdgeInsets.all(6.0),
-        decoration: BoxDecoration(
-          color: Color.fromARGB(0, 0, 0, 0),
-        ),
-        child: new NotificationView(_eventManager),
-      ),
-    ],
-    backgroundColor: Theme.of(context).primaryColor,
-  );
-}
-
-class PreTable extends StatelessWidget {
-  const PreTable({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Table(
-      children: [
-        TableRow(
-          children: [
-            CustomBoxForOptions("Asignaturas", Icons.collections_bookmark),
-            CustomBoxForOptions("Configuración", Icons.settings),
-          ],
-        ),
-        TableRow(children: [
-          CustomBoxForOptions("Calificaciones", Icons.assignment),
-          CustomBoxForOptions("Exámenes", Icons.insert_drive_file)
-        ])
-      ],
     );
   }
 }

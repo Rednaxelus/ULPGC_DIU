@@ -1,11 +1,11 @@
 import 'package:intl/intl.dart';
 import 'package:uni/model/NewsModel.dart';
 
-class NewsManager {
+class NewsRepository {
   final List<NewsModel> _news = List<NewsModel>();
   static final DateFormat _dateFormat = DateFormat('dd.MM.yyyy');
 
-  NewsManager() {
+  NewsRepository() {
     DateTime dateTime = DateTime.now();
 
     _news.add(NewsModel("El calendario de examenes ya está actualizado",

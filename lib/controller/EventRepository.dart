@@ -1,9 +1,9 @@
 import 'package:uni/model/EventModel.dart';
 
-class EventManager {
+class EventRepository {
   final List<EventModel> events = List<EventModel>();
 
-  EventManager() {
+  EventRepository() {
     events.add(EventModel('Aplicación de becas cerca', DateTime(2020, 1, 2),
         "No lo olvide", EventType.IMPORTANT));
     events.add(EventModel('Entrega P4 EC', DateTime(2020, 1, 2, 10, 30),
