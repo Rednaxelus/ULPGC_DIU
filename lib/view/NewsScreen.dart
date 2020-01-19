@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni/controller/NewsManager.dart';
+import 'package:uni/controller/NewsRepository.dart';
 
 class NewsScreen extends StatefulWidget {
   NewsScreen(this._newsRepository);

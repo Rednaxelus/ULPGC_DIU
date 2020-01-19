@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni/controller/EventRepository.dart';
-import 'package:uni/controller/NewsManager.dart';
+import 'package:uni/controller/NewsRepository.dart';
 import 'package:uni/view/LabReservationScreen.dart';
 import 'package:uni/view/NewsScreen.dart';
 
